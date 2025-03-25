@@ -1,25 +1,27 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+Cypress.Commands.add('FillMandatoryFieldsAndSubmit', () => {
+    const longText = Cypress._.repeat('12345679',10)
+    const firstName = 'Levi'
+    const lastName = 'Carvalho'
+    const phone = '79999999999'
+    const email = 'levysantos792@gmail.com'
+    cy.get('#firstName').should('be.visible').type(firstName)
+    cy.get('#lastName').should('be.visible').type(lastName)
+    cy.get('#email').should('be.visible').type(email)
+    cy.get('#phone').should('be.visible').type(phone)
+    cy.get('#open-text-area').should('be.visible').type(longText, {delay: 0})
+    cy.get('.button, Enviar').should('be.visible').click()
+})
+Cypress.Commands.add('FillMandatoryFieldsAndSubmit', (data = {
+    firstName: 'Mariazinha',
+    lastName: 'pereirinha',
+    email: 'mariazinha@gmail.com',
+    phone: '79999999999'
+}) => {
+    const longText = Cypress._.repeat('12345679',10)
+    cy.get('#firstName').should('be.visible').type(data.firstName)
+    cy.get('#lastName').should('be.visible').type(data.lastName)
+    cy.get('#email').should('be.visible').type(data.email)
+    cy.get('#phone').should('be.visible').type(data.phone)
+    cy.get('#open-text-area').should('be.visible').type(longText, {delay: 0})
+    cy.get('.button, Enviar').should('be.visible').click()
+})
