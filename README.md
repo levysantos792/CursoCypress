@@ -1,28 +1,58 @@
-# 🌲 Cypress, do Zero à Nuvem ☁️
+# 🤖 Projeto Cypress Básico
 
-👋 Seja bem-vindo(a)!
+Este projeto contém testes automatizados utilizando o framework [Cypress](https://www.cypress.io/). O objetivo é demonstrar a configuração e execução de testes end-to-end em aplicações web.
 
-É muito bom tê-lo(a) aqui. Tenho certeza que você vai amar esse curso. ❤️
+## 📌 Requisitos
 
-## O que você vai aprender?
+Antes de começar, certifique-se de ter os seguintes requisitos instalados:
 
-- Como configurar um projeto Cypress do zero
-- Como visitar páginas locais e remotas
-- Como lidar com os elementos mais comuns encontrados em aplicações web
-- Como testar upload de arquivos
-- Como realizar as mais diversas verificações de resultados esperados
-- Como criar comandos customizados
-- Como lidar com links que abrem em outra aba do navegador
-- Como rodar testes simulando as dimensões de um dispositivo móvel
-- Como resolver os mesmos problemas de diferentes formas, conhecendo a [API do Cypress](https://docs.cypress.io/api/table-of-contents)
-- Como criar uma documentação mínima para seu projeto de testes automatizados
-- Como executar os testes em um _workflow_ de integração contínua sempre que mudanças ocorrerem no código da aplicação (ou dos testes)
-- Como integrar seu _workflow_ de integração contínua com o Cypress Cloud (o serviço de gestão de testes do Cypress na nuvem)
+- [Visual Studio Code](code.visualstudio.com/download)
+- [Git](https://git-scm.com/downloads)
+- [Node.js](https://nodejs.org/) (versão recomendada: LTS)
+- [npm](https://www.npmjs.com/)
 
-## Vamos começar?
+## 🚀 Instalação
+1. Acesse o repositório no github: [Cypress Básico](https://github.com/levysantos792/CursoCypress)
+2. Faça um clone do projeto em seu computador: `git clone https://github.com/levysantos792/CursoCypress`
+3. Instale a dependência: `npm install`
+4. Na raiz do projeto, execute o comando `npm install cypress@13.12.0 --save-dev` (ou `npm i cypress@13.12.0 -D` para a versão curta).
+Execute o comando `npx cypress open` para abrir o Cypress pela primeira vez e deixe-o guiá-lo na criação de uma suite de testes de ponta a ponta (E2E).
 
-Vá para a seção [estrutura do curso](./lessons/_course-structure_.md).
+## 📝 Estrutura do Projeto
+    📂 nome-do-repositorio
+    ├── 📂 cypress
+    │   ├── 📂 e2e              # Testes end-to-end
+    │   ├── 📂 fixtures         # Arquivos de mock de dados
+    │   ├── 📂 support          # Comandos e configurações globais
+    │   └── 📂 downloads        # Downloads de arquivos (se aplicável)
+    ├── 📄 cypress.config.js    # Configuração do Cypress
+    ├── 📄 package.json         # Dependências e scripts
+    └── 📄 README.md            # Documentação do projeto
 
-___
+## 🎯 Como Executar os Testes
 
-Este é um curso da **Escola Talking About Testing**.
+### Modo Interativo (GUI)
+
+Execute o comando abaixo para abrir o Cypress em modo interativo:
+
+`npm run cy:open`
+
+Selecione o arquivo de teste desejado e execute.
+
+### Modo Headless (Terminal)
+
+Para rodar os testes no modo headless (sem interface gráfica), execute:
+
+`npm run test:run`
+
+## 🛠 Configuração Adicional
+
+Se necessário, personalize o arquivo cypress.config.js para ajustar as configurações do Cypress, como viewport, base URL e tempo de espera.
+
+## 📄 Exemplo de Teste
+
+**Exemplo de teste básico**
+it('Verifica se a página inicial carrega corretamente', () => {
+  cy.visit('https://exemplo.com')
+  cy.get('h1').should('contain', 'Bem-vindo')
+})
