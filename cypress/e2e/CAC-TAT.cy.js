@@ -124,6 +124,7 @@ describe('Central de Atendimento ao Cliente TAT', () => {
     cy.get('a[href="privacy.html"]')
     .invoke('removeAttr', 'target')
     .click()
+    Bug
   })
   
 
