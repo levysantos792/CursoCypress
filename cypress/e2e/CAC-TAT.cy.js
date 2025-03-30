@@ -8,6 +8,7 @@ describe('Central de Atendimento ao Cliente TAT', () => {
 
   it('preenche os campos obrigatórios e envia o formulário', () => {
     const longText = Cypress._.repeat('12345679',10)
+    cy.clock()
     cy.get('#firstName').should('be.visible').type('Levi')
     cy.get('#lastName').should('be.visible').type('Carvalho')
     cy.get('#email').should('be.visible').type('levysantos792@gmail.com')
@@ -15,13 +16,19 @@ describe('Central de Atendimento ao Cliente TAT', () => {
     cy.get('#open-text-area').should('be.visible').type(longText, {delay: 0})
     cy.contains('button', 'Enviar').click()
     cy.get('.success').should('be.visible')
+    cy.tick(4000)
+    cy.get('.success').should('not.be.visible')
   })
   it('preenche os campos obrigatórios e envia o formulário', () => {
+    cy.clock()
     cy.FillMandatoryFieldsAndSubmit()
     cy.get('.success').should('be.visible')
+    cy.tick(4000)
+    cy.get('.success').should('not.be.visible')
   })
 
   it('preenche os campos obrigatórios e envia o formulário com diferentes dados', () => {
+    cy.clock()
     const  teste = {
       firstName: 'Levi',
       lastName: 'Carvalho',
@@ -30,17 +37,23 @@ describe('Central de Atendimento ao Cliente TAT', () => {
     }
     cy.FillMandatoryFieldsAndSubmit(teste)
     cy.get('.success').should('be.visible')
+    cy.tick(4000)
+    cy.get('.success').should('not.be.visible')
   })
 
   it('exibe mensagem de erro ao submeter o formulário com um email com formatação inválida', () => {
+    cy.clock()
     cy.get('#firstName').should('be.visible').type('Levi')
     cy.get('#lastName').should('be.visible').type('Carvalho')
     cy.get('#email').should('be.visible').type('levysantos792@gmail,com')
     cy.contains('button', 'Enviar').click()
     cy.get('.error').should('be.visible')
+    cy.tick(4000)
+    cy.get('.error').should('not.be.visible')
 
   })
   it('exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário', () => {
+    cy.clock()
     cy.get('#firstName').should('be.visible').type('Levi')
     cy.get('#lastName').should('be.visible').type('Carvalho')
     cy.get('#email').should('be.visible').type('levysantos792@gmail.com')
@@ -49,15 +62,20 @@ describe('Central de Atendimento ao Cliente TAT', () => {
     cy.get('#email').should('be.visible').type('levysantos792@gmail,com')
     cy.contains('button', 'Enviar').click()
     cy.get('.error').should('be.visible')
+    cy.tick(4000)
+    cy.get('.error').should('not.be.visible')
   })
 
   it('preenche e limpa os campos nome, sobrenome, email e telefone', () => {
+    cy.clock()
     cy.get('#firstName').should('be.visible').type('Levi').should('not.be.value', '').clear().should('be.value', '')
     cy.get('#lastName').should('be.visible').type('Carvalho').should('not.be.value', '').clear().should('be.value', '')
     cy.get('#email').should('be.visible').type('levysantos792@gmail.com').should('not.be.value', '').clear().should('be.value', '')
     cy.get('#phone').should('be.visible').type('79999999999').should('have.value', '79999999999').should('not.be.value', '').clear().should('be.value', '')
     cy.contains('button', 'Enviar').click()
     cy.get('.error').should('be.visible')
+    cy.tick(4000)
+    cy.get('.error').should('not.be.visible')
 
   })
 
@@ -125,6 +143,39 @@ describe('Central de Atendimento ao Cliente TAT', () => {
     .invoke('removeAttr', 'target')
     .click()
   })
+  it('acessa a página da política de privacidade removendo o target e então clicando no link', () => {
+    cy.get('a[href="privacy.html"]')
+    .invoke('removeAttr', 'target')
+    .click()
+  })
+
+  it('exibe mensagem de sucesso por 3 segundos', function() {
+    cy.clock()
+    const  teste = {
+      firstName: 'Levi',
+      lastName: 'Carvalho',
+      email: 'Levi@gmail.com',
+      phone: '79999999999'
+    }
+    cy.FillMandatoryFieldsAndSubmit(teste)
+    cy.get('.success').should('be.visible')
+    cy.tick(4000)
+    cy.get('.success').should('not.be.visible')
+
+  })
+  Cypress._.times(3, () => {  it.only('exibe mensagem de erro por 3 segundos', () => {
+      cy.clock()
+      cy.get('#firstName').should('be.visible').type('Levi').should('not.be.value', '').clear().should('be.value', '')
+      cy.get('#lastName').should('be.visible').type('Carvalho').should('not.be.value', '').clear().should('be.value', '')
+      cy.get('#email').should('be.visible').type('levysantos792@gmail.com').should('not.be.value', '').clear().should('be.value', '')
+      cy.get('#phone').should('be.visible').type('79999999999').should('have.value', '79999999999').should('not.be.value', '').clear().should('be.value', '')
+      cy.contains('button', 'Enviar').click()
+      cy.get('.error').should('be.visible')
+      cy.tick(4000)
+      cy.get('.error').should('not.be.visible')
+
+    })})
+
   
 
 })
