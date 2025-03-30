@@ -25,3 +25,11 @@ Cypress.Commands.add('FillMandatoryFieldsAndSubmit', (data = {
     cy.get('#open-text-area').should('be.visible').type(longText, {delay: 0})
     cy.get('.button, Enviar').should('be.visible').click()
 })
+
+Cypress.Commands.add('ImportarArquivo', (arquivo) => {
+    const docdir = "cypress//fixtures//"
+    // const arquivo = "example.json"
+    cy.get('#file-upload')
+    .selectFile(`${docdir}${arquivo}`)
+    .should(input => expect(input[0].files[0].name).to.equal(arquivo))
+})

@@ -76,10 +76,54 @@ describe('Central de Atendimento ao Cliente TAT', () => {
     cy.get('input[type="radio"][value="feedback"]').should('be.visible').check().should('be.checked')
 
   })
-  it.only('marca o tipo de atendimento', () => {
+  it('marca o tipo de atendimento', () => {
     cy.get('input[type="radio"]').each(($radio) => {
       cy.wrap($radio).check().should('be.checked')
     })
+  })
+  it('marca ambos checkboxes, depois desmarca o últim', () => {
+    cy.get('input[type="checkbox"]')
+    .should('be.visible')
+    .check().each(($checkbox) => { //Verifico se todos foram marcados
+      expect($checkbox[0].checked).to.equal(true)})
+    cy.get('#phone-checkbox').uncheck()
+
+  })
+
+  it('seleciona um arquivo da pasta fixtures', () => {
+    const docdir = "cypress//fixtures//"
+    const arquivo = "example.json"
+    cy.get('#file-upload')
+    .selectFile(`${docdir}${arquivo}`)
+    .should(input => expect(input[0].files[0].name).to.equal(arquivo))
+
+  })
+
+  it('seleciona um arquivo simulando um drag-and-drop', () => {
+    const docdir = "cypress//fixtures//"
+    const arquivo = "example.json"
+    cy.get('#file-upload')
+    .selectFile(`${docdir}${arquivo}`, {action:'drag-drop'})
+    .should(input => expect(input[0].files[0].name).to.equal(arquivo))
+
+  })
+
+  it('seleciona um arquivo utilizando uma fixture para a qual foi dada um alias', () => {
+    cy.fixture('example.json').as('samplefile')
+    cy.get('#file-upload')
+    .selectFile('@samplefile', {action:'drag-drop'})
+    .should(input => expect(input[0].files[0].name).to.equal('example.json'))
+  })
+
+  it('verifica que a política de privacidade abre em outra aba sem a necessidade de um clique', () => {
+    cy.get('a[href="privacy.html"]')
+    .should('have.attr','target', '_blank')
+  })
+
+  it('acessa a página da política de privacidade removendo o target e então clicando no link', () => {
+    cy.get('a[href="privacy.html"]')
+    .invoke('removeAttr', 'target')
+    .click()
   })
   
 
