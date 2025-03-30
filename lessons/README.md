@@ -6,10 +6,10 @@ Este projeto contém testes automatizados utilizando o framework [Cypress](https
 
 Antes de começar, certifique-se de ter os seguintes requisitos instalados:
 
-[Visual Studio Code](code.visualstudio.com/download)
-[Git](https://git-scm.com/downloads)
-[Node.js](https://nodejs.org/) (versão recomendada: LTS)
-[npm](https://www.npmjs.com/)
+- [Visual Studio Code](code.visualstudio.com/download)
+- [Git](https://git-scm.com/downloads)
+- [Node.js](https://nodejs.org/) (versão recomendada: LTS)
+- [npm](https://www.npmjs.com/)
 
 ## 🚀 Instalação
 1. Acesse o repositório no github: [Cypress Básico](https://github.com/levysantos792/CursoCypress)
