@@ -43,7 +43,7 @@ Selecione o arquivo de teste desejado e execute.
 
 Para rodar os testes no modo headless (sem interface gráfica), execute:
 
-`test:run`
+`npm run test:run`
 
 ## 🛠 Configuração Adicional
 
