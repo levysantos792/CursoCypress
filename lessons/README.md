@@ -13,7 +13,7 @@ Antes de começar, certifique-se de ter os seguintes requisitos instalados:
 
 ## 🚀 Instalação
 1. Acesse o repositório no github: [Cypress Básico](https://github.com/levysantos792/CursoCypress)
-2. Faça um clone do projeto em seu computador: `git clone https://github.com/seu-usuario/nome-do-repositorio.git`
+2. Faça um clone do projeto em seu computador: `git clone https://github.com/levysantos792/CursoCypress`
 3. Instale a dependência: `npm install`
 4. Na raiz do projeto, execute o comando `npm install cypress@13.12.0 --save-dev` (ou `npm i cypress@13.12.0 -D` para a versão curta).
 Execute o comando `npx cypress open` para abrir o Cypress pela primeira vez e deixe-o guiá-lo na criação de uma suite de testes de ponta a ponta (E2E).
